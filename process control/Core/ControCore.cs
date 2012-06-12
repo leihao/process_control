@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Management;
 
-namespace leihao.PCPC
+namespace leihao.PCPC.Core
 {
-    class ControCore
+    class ControlCore
     {
         static void core(string[] args)
         {

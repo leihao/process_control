@@ -51,12 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControCore.cs" />
-    <Compile Include="DWM.cs" />
+    <Compile Include="Core\ControCore.cs" />
+    <Compile Include="UI\DwmApi.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FormIA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormIA.Designer.cs">
+      <DependentUpon>FormIA.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
@@ -90,7 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icon.ico" />
-    <Content Include="Slicer47.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
