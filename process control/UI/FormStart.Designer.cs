@@ -73,6 +73,7 @@
             this.Name = "FormStart";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PCPC启动中...";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormStart_Load);

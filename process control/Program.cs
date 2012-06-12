@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using leihao.PCPC.UI;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace leihao.PCPC
 {

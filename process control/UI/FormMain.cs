@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-//using System.Linq;
-using System.Text;
+using System.Management;
 using System.Windows.Forms;
 
 namespace leihao.PCPC.UI
@@ -78,7 +74,26 @@ namespace leihao.PCPC.UI
         //定时器刷新
         private void timer_Tick(object sender, EventArgs e)
         {
+            timer.Stop();
+            //ProlistView.Clear();
+            ManagementClass cimobject3 = new ManagementClass("Win32_PerfFormattedData_PerfProc_Process");
+            ManagementObjectCollection moc3 = cimobject3.GetInstances();
+            foreach (ManagementObject mo3 in moc3)
+            {
+                //新建ListViewItem
+                ListViewItem lvi = new ListViewItem();
 
+                for (int i = 0; i < 8; i++)
+                {
+                    lvi.SubItems.Add("");
+                }
+                lvi.SubItems[0].Text = mo3.GetPropertyValue("IDProcess").ToString();//
+                lvi.SubItems[1].Text = mo3.GetPropertyValue("Name").ToString(); //
+                lvi.SubItems[2].Text = mo3.GetPropertyValue("PercentPrivilegedTime").ToString(); //
+                lvi.SubItems[3].Text = mo3.GetPropertyValue("PrivateBytes").ToString(); //
+                lvi.SubItems[4].Text = mo3.GetPropertyValue("IODataOperationsPerSec").ToString(); //
+                ProlistView.Items.Add(lvi);
+            }
         }
 
         //托盘右键单击
@@ -95,6 +110,16 @@ namespace leihao.PCPC.UI
             {
                 ToolStripMenuItem_ShowHide.Text = "显示";
             }
+        }
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
         }
     }
 }

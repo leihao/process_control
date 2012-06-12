@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
 using System.Management;
 
 namespace leihao.PCPC.Core
 {
-    class ControlCore
+    class WmiApi
     {
-        static void core(string[] args)
+        static void main(string[] args)
         {
             /*获取进程信息*/
             //创建Win32_Process WMI类

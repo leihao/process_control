@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace leihao.PCPC.UI
@@ -22,7 +18,7 @@ namespace leihao.PCPC.UI
         {
             //设置AERO效果
             marg = new DwmApi.MARGINS(this.Width, this.Height, this.Width, this.Height);
-            //if (Config.IsWindowsVistaOrHigher()) //如果是vista以上
+            //if (Settings.IsWindowsVistaOrHigher()) //如果是vista以上
             {
                 if (DwmApi.DwmIsCompositionEnabled()) //如果dwm被启用了（有AERO效果）
                 {

@@ -30,22 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Chrome浏览器", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("范例");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("chrome.exe");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("chrome.exe");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "chrome.exe",
-            "10%",
-            "300MB",
-            "12%"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("chrome.exe");
             this.KillProgram = new System.Windows.Forms.Button();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.trayMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItem_ShowHide = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_silence = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripMenuItem_exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.ProlistView = new System.Windows.Forms.ListView();
+            this.columnHeader_PID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_ProgramName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_CPU = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,8 +47,7 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.隐藏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ToolStripMenuItem_silence = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.trayMenuStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -63,12 +55,13 @@
             // KillProgram
             // 
             this.KillProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.KillProgram.Location = new System.Drawing.Point(387, 1);
+            this.KillProgram.Location = new System.Drawing.Point(436, 1);
             this.KillProgram.Name = "KillProgram";
             this.KillProgram.Size = new System.Drawing.Size(75, 23);
             this.KillProgram.TabIndex = 1;
             this.KillProgram.Text = "结束进程";
             this.KillProgram.UseVisualStyleBackColor = true;
+            this.KillProgram.Visible = false;
             // 
             // notifyIcon
             // 
@@ -96,6 +89,18 @@
             this.ToolStripMenuItem_ShowHide.Text = "显示/隐藏主窗口";
             this.ToolStripMenuItem_ShowHide.Click += new System.EventHandler(this.mnuTrayShowHide_Click);
             // 
+            // ToolStripMenuItem_silence
+            // 
+            this.ToolStripMenuItem_silence.Enabled = false;
+            this.ToolStripMenuItem_silence.Name = "ToolStripMenuItem_silence";
+            this.ToolStripMenuItem_silence.Size = new System.Drawing.Size(163, 22);
+            this.ToolStripMenuItem_silence.Text = "免扰模式";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
+            // 
             // ToolStripMenuItem_exit
             // 
             this.ToolStripMenuItem_exit.Name = "ToolStripMenuItem_exit";
@@ -103,64 +108,55 @@
             this.ToolStripMenuItem_exit.Text = "退出";
             this.ToolStripMenuItem_exit.Click += new System.EventHandler(this.FormMain_FormClosing);
             // 
-            // listView1
+            // ProlistView
             // 
-            this.listView1.AllowColumnReorder = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ProlistView.AllowColumnReorder = true;
+            this.ProlistView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader_PID,
             this.columnHeader_ProgramName,
             this.columnHeader_CPU,
             this.columnHeader_memory,
             this.columnHeader_IO});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            listViewGroup1.Header = "Chrome浏览器";
-            listViewGroup1.Name = "listViewGroup1";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
-            this.listView1.ImeMode = System.Windows.Forms.ImeMode.Off;
-            listViewItem2.Group = listViewGroup1;
-            listViewItem3.Group = listViewGroup1;
-            listViewItem4.Group = listViewGroup1;
-            listViewItem5.Group = listViewGroup1;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5});
-            this.listView1.Location = new System.Drawing.Point(0, 24);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(462, 311);
-            this.listView1.Sorting = System.Windows.Forms.SortOrder.Descending;
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.ProlistView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProlistView.FullRowSelect = true;
+            this.ProlistView.GridLines = true;
+            this.ProlistView.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.ProlistView.Location = new System.Drawing.Point(0, 24);
+            this.ProlistView.Name = "ProlistView";
+            this.ProlistView.Size = new System.Drawing.Size(511, 330);
+            this.ProlistView.Sorting = System.Windows.Forms.SortOrder.Descending;
+            this.ProlistView.TabIndex = 2;
+            this.ProlistView.UseCompatibleStateImageBehavior = false;
+            this.ProlistView.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader_PID
+            // 
+            this.columnHeader_PID.Text = "PID";
+            this.columnHeader_PID.Width = 38;
             // 
             // columnHeader_ProgramName
             // 
             this.columnHeader_ProgramName.Text = "程序/进程";
-            this.columnHeader_ProgramName.Width = 140;
+            this.columnHeader_ProgramName.Width = 143;
             // 
             // columnHeader_CPU
             // 
             this.columnHeader_CPU.Text = "CPU占用率(%)";
-            this.columnHeader_CPU.Width = 104;
+            this.columnHeader_CPU.Width = 88;
             // 
             // columnHeader_memory
             // 
-            this.columnHeader_memory.Text = "内存占用(MB)";
-            this.columnHeader_memory.Width = 86;
+            this.columnHeader_memory.Text = "内存占用(Byte)";
+            this.columnHeader_memory.Width = 99;
             // 
             // columnHeader_IO
             // 
-            this.columnHeader_IO.Text = "I/O占用(%)";
-            this.columnHeader_IO.Width = 121;
+            this.columnHeader_IO.Text = "I/O占用(次)";
+            this.columnHeader_IO.Width = 87;
             // 
             // timer
             // 
             this.timer.Enabled = true;
-            this.timer.Interval = 2000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // menuStrip
@@ -170,7 +166,7 @@
             this.退出ToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(462, 24);
+            this.menuStrip.Size = new System.Drawing.Size(511, 24);
             this.menuStrip.TabIndex = 3;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -188,25 +184,18 @@
             this.退出ToolStripMenuItem.Text = "退出(&X)";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.FormMain_FormClosing);
             // 
-            // toolStripSeparator1
+            // backgroundWorker
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
-            // 
-            // ToolStripMenuItem_silence
-            // 
-            this.ToolStripMenuItem_silence.Enabled = false;
-            this.ToolStripMenuItem_silence.Name = "ToolStripMenuItem_silence";
-            this.ToolStripMenuItem_silence.Size = new System.Drawing.Size(163, 22);
-            this.ToolStripMenuItem_silence.Text = "免扰模式";
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 335);
+            this.ClientSize = new System.Drawing.Size(511, 354);
             this.Controls.Add(this.KillProgram);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.ProlistView);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
@@ -226,7 +215,7 @@
 
         private System.Windows.Forms.Button KillProgram;
         private System.Windows.Forms.NotifyIcon notifyIcon;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView ProlistView;
         private System.Windows.Forms.ColumnHeader columnHeader_ProgramName;
         private System.Windows.Forms.ColumnHeader columnHeader_CPU;
         private System.Windows.Forms.ColumnHeader columnHeader_memory;
@@ -240,5 +229,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_exit;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_silence;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ColumnHeader columnHeader_PID;
+        public System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
