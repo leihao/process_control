@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("process control")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("PCPC")]
+[assembly: AssemblyDescription("Personal Computer Process Control")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("process control")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyProduct("PCPC")]
+[assembly: AssemblyCopyright("leihao Copyright ©  2012")]
+[assembly: AssemblyTrademark("PCPC")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 使此程序集中的类型
