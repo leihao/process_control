@@ -27,6 +27,9 @@ namespace leihao.PCPC.UI
                     DwmApi.DwmExtendFrameIntoClientArea(this.Handle, marg);
                 }
             }
+            //加载FormMain窗体
+            Application.DoEvents();
+            Program.frmMain = new FormMain();
         }
 
         //窗体重绘事件
@@ -52,9 +55,7 @@ namespace leihao.PCPC.UI
         private void FormStart_Shown(object sender, EventArgs e)
         {
             Waitetimer.Stop();
-            //加载FormMain窗体
-            Application.DoEvents();
-            Program.frmMain = new FormMain();
+
             Program.frmMain.Show();
             this.Hide();
         }

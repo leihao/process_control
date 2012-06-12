@@ -55,7 +55,7 @@
             // KillProgram
             // 
             this.KillProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.KillProgram.Location = new System.Drawing.Point(436, 1);
+            this.KillProgram.Location = new System.Drawing.Point(410, 1);
             this.KillProgram.Name = "KillProgram";
             this.KillProgram.Size = new System.Drawing.Size(75, 23);
             this.KillProgram.TabIndex = 1;
@@ -123,7 +123,7 @@
             this.ProlistView.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.ProlistView.Location = new System.Drawing.Point(0, 24);
             this.ProlistView.Name = "ProlistView";
-            this.ProlistView.Size = new System.Drawing.Size(511, 330);
+            this.ProlistView.Size = new System.Drawing.Size(485, 331);
             this.ProlistView.Sorting = System.Windows.Forms.SortOrder.Descending;
             this.ProlistView.TabIndex = 2;
             this.ProlistView.UseCompatibleStateImageBehavior = false;
@@ -166,7 +166,7 @@
             this.退出ToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(511, 24);
+            this.menuStrip.Size = new System.Drawing.Size(485, 24);
             this.menuStrip.TabIndex = 3;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -193,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 354);
+            this.ClientSize = new System.Drawing.Size(485, 355);
             this.Controls.Add(this.KillProgram);
             this.Controls.Add(this.ProlistView);
             this.Controls.Add(this.menuStrip);
